@@ -10,7 +10,7 @@ sudo nmap -v -sS -oX vulnerabilidades.xml --stylesheet="https://svn.nmap.org/nma
 ![imagen](https://user-images.githubusercontent.com/108554878/225091888-805b94d6-57ee-498d-af53-2c3c3c00bea3.png)
 
 
-Vemos smb en el 445, mssql en el 1433 y winreg en el 5985
+Vemos smb en el 445, mssql en el 1433 y winrm en el 5985
 
 Primero que nada entramos de forma anónima a smb 
 
