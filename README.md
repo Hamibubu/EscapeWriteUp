@@ -99,7 +99,7 @@ Intentamos user certify.exe recomendado para esto, encontramos que es vulnerable
 Al intentar aprovecharnos de esto da un error inesperado así que usamos certipy-ad que funciona también
 
 ~~~
-certipy-ad find -vulnerable -stdout -u Ryan.Cooper@sequel.htb -p NuclearMosquito3 -dc-ip 10.10.11.202
+certipy-ad find -vulnerable -stdout -u Ryan.Cooper@sequel.htb -p {Contraseña} -dc-ip 10.10.11.202
 ~~~
 
 También nos encuentra la vulnerabilidad
